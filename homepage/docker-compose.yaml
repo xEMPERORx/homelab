@@ -1,0 +1,15 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config:/app/config # Make sure your local config directory exists
+      - ./images:/app/public/images
+      - ./icons:/app/public/icons
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - HOMEPAGE_ALLOWED_HOSTS=192.168.1.7:3000,localhost
+    restart: unless-stopped

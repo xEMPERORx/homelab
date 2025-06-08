@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://github.com/frappe/erpnext",
+    "branch": "version-15"
+  },
+  {
+    "url": "https://github.com/resilient-tech/india-compliance",
+    "branch": "version-15"
+  },
+  {
+    "url": "https://github.com/frappe/print_designer",
+    "branch": "main"
+  },
+  {
+    "url": "https://github.com/frappe/crm",
+    "branch": "main"
+  },
+  {
+    "url": "https://github.com/frappe/hrms",
+    "branch": "version-15"
+  },
+  {
+    "url": "https://github.com/frappe/gameplan",
+    "branch": "main"
+  },
+  {
+    "url": "https://github.com/frappe/wiki",
+    "branch": "master"
+  },
+  {
+    "url": "https://github.com/frappe/lms",
+    "branch": "develop"
+  },
+  {
+    "url": "https://github.com/frappe/education",
+    "branch": "develop"
+  }
+]

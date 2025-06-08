@@ -1,0 +1,25 @@
+[2025-06-07T04:49:04.268Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:04.276Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.404Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.470Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.475Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.477Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.479Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.481Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.483Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.486Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.489Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.492Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.493Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.497Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:05.570Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:21.285Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:21.287Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:29.815Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:49:29.818Z] error: Host validation failed for: 192.168.1.7:3000. Hint: Set the HOMEPAGE_ALLOWED_HOSTS environment variable to allow requests from this host / port.
+[2025-06-07T04:52:08.252Z] info: docker.yaml was copied to the config folder
+[2025-06-07T04:52:08.257Z] info: services.yaml was copied to the config folder
+[2025-06-07T04:52:08.257Z] info: bookmarks.yaml was copied to the config folder
+[2025-06-07T04:52:08.263Z] info: widgets.yaml was copied to the config folder
+[2025-06-07T04:52:08.264Z] info: custom.css was copied to the config folder
+[2025-06-07T04:52:08.264Z] info: custom.js was copied to the config folder
