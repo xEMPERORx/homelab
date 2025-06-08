@@ -1,6 +1,3 @@
-Here's the information formatted properly for a Markdown (MD) file, as you requested.
-
-````markdown
 # Docker Compose Deployment for AFFiNE
 
 Docker Compose is the recommended method for self-hosting AFFiNE.
