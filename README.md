@@ -1,6 +1,6 @@
 # 🏡 My Homelab Documentation
 
-Welcome to the documentation for my personal homelab setup\! This guide details the configuration of my Ubuntu Server, Dockerized applications, and secure remote access via Cloudflare Tunnel. This documentation serves as a reference for myself in case of OS corruption or data loss, and as a guide for others looking to build a similar homelab, especially those without a static IP address.
+Welcome to the documentation for my personal homelab setup! This guide details the configuration of my Ubuntu Server, Dockerized applications, and secure remote access via Cloudflare Tunnel. This documentation serves as a reference for myself in case of OS corruption or data loss, and as a guide for others looking to build a similar homelab, especially those without a static IP address.
 
 ## Table of Contents
 
@@ -19,41 +19,44 @@ Welcome to the documentation for my personal homelab setup\! This guide details 
     * [Install Cloudflared](#install-cloudflared)
     * [Authenticate Cloudflared](#authenticate-cloudflared)
     * [Create a Tunnel](#create-a-tunnel)
-    * [Configure Tunnel Routes (homelab.yml)](#configure-tunnel-routes-homelabyml)
+    * [Configure Tunnel Routes (`homelab.yml`)](#configure-tunnel-routes-homelabyml)
+    * [Add DNS Records via CLI](#add-dns-records-via-cli)
     * [Run the Tunnel as a Service](#run-the-tunnel-as-a-service)
     * [JSON and YML File Formats](#json-and-yml-file-formats)
 7.  [Application Management with Docker](#7-application-management-with-docker)
     * [Portainer](#portainer)
     * [ERPNext Specifics](#erpnext-specifics)
+        * [Installing Custom Apps for ERPNext](#installing-custom-apps-for-erpnext)
 8.  [Backup and Recovery Strategy (Future Enhancements)](#8-backup-and-recovery-strategy-future-enhancements)
 9.  [Troubleshooting](#9-troubleshooting)
 10. [Docker Container List and Ports](#10-docker-container-list-and-ports)
------
 
-## 1\. Overview
+---
+
+## 1. Overview
 
 My homelab is built on a robust Ubuntu Server installation, leveraging Docker containers for nearly all applications. This approach provides excellent isolation, portability, and ease of management. Since my ISP does not provide a static IP address, I utilize Cloudflare Tunnel to securely expose my homelab services to the internet without opening any ports on my router. This eliminates the need for dynamic DNS or exposing my public IP address.
 
 **Key Components:**
 
-  * **Operating System:** Ubuntu Server
-  * **Containerization:** Docker & Docker Compose
-  * **Remote Access:** Cloudflare Tunnel
-  * **Application Management:** Portainer (for Docker GUI)
-  * **Data Storage:** `/srv/homelab`
+* **Operating System:** Ubuntu Server
+* **Containerization:** Docker & Docker Compose
+* **Remote Access:** Cloudflare Tunnel
+* **Application Management:** Portainer (for Docker GUI)
+* **Data Storage:** `/srv/homelab`
 
 **Note for users with a static IP:** If your ISP provides you with a static IP address, you can directly point your domain records (A/AAAA) to your public IP. In such cases, a reverse proxy (like Nginx Proxy Manager or Traefik) would be a more common choice than Cloudflare Tunnel for internal routing and SSL termination. However, for those without a static IP, Cloudflare Tunnel is an excellent, secure, and performant alternative.
 
-## 2\. Prerequisites
+## 2. Prerequisites
 
 Before you begin, ensure you have:
 
-  * A dedicated machine for your homelab (e.g., an old PC, a mini PC, a Raspberry Pi 4).
-  * A USB drive or method to install Ubuntu Server.
-  * Basic understanding of Linux command line.
-  * A Cloudflare account with a registered domain name (for Cloudflare Tunnel).
+* A dedicated machine for your homelab (e.g., an old PC, a mini PC, a Raspberry Pi 4).
+* A USB drive or method to install Ubuntu Server.
+* Basic understanding of Linux command line.
+* A Cloudflare account with a registered domain name (for Cloudflare Tunnel).
 
-## 3\. Ubuntu Server Setup
+## 3. Ubuntu Server Setup
 
 This section outlines the initial setup of your Ubuntu Server.
 
@@ -65,11 +68,11 @@ This section outlines the initial setup of your Ubuntu Server.
 
 3.  **Install Ubuntu Server:**
 
-      * Boot your homelab machine from the USB drive.
-      * Follow the on-screen prompts for installation.
-      * **Crucial Step:** When prompted, select the option to install OpenSSH server. This will allow you to connect to your server remotely via SSH.
-      * Set up a strong password for your user account.
-      * Consider setting up LVM (Logical Volume Management) for easier disk management and resizing in the future, especially if you plan to expand storage.
+    * Boot your homelab machine from the USB drive.
+    * Follow the on-screen prompts for installation.
+    * **Crucial Step:** When prompted, select the option to install OpenSSH server. This will allow you to connect to your server remotely via SSH.
+    * Set up a strong password for your user account.
+    * Consider setting up LVM (Logical Volume Management) for easier disk management and resizing in the future, especially if you plan to expand storage.
 
 4.  **Update Your System:** Once the installation is complete and you've logged in (either directly or via SSH), update all packages to their latest versions:
 
@@ -100,7 +103,7 @@ network:
         addresses:
           - 1.1.1.1 # Primary DNS server (Cloudflare)
           - 8.8.8.8 # Secondary DNS server (Google)
-```
+````
 
 1.  **Edit Netplan Configuration:**
 
@@ -144,12 +147,12 @@ Follow the official Docker documentation for the most up-to-date installation in
 2.  **Add Docker's official GPG key:**
     ```bash
     sudo mkdir -m 0755 -p /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    curl -fsSL [https://download.docker.com/linux/ubuntu/gpg](https://download.docker.com/linux/ubuntu/gpg) | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
     ```
 3.  **Set up the repository:**
     ```bash
     echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] [https://download.docker.com/linux/ubuntu](https://download.docker.com/linux/ubuntu) \
       $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     ```
 4.  **Install Docker Engine, containerd, and Docker Compose (CLI plugin):**
@@ -184,7 +187,7 @@ While the `docker-compose-plugin` was installed above, you might sometimes encou
 
 1.  **Download the latest stable release of Docker Compose:**
     ```bash
-    sudo curl -L "https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo curl -L "[https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-$(uname](https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-$(uname) -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     # Replace v2.24.5 with the latest stable version from Docker Compose GitHub releases
     ```
 2.  **Apply executable permissions:**
@@ -237,8 +240,8 @@ Cloudflare Tunnel is a fantastic solution for exposing services running on your 
     ```bash
     sudo apt update
     sudo apt install -y lsb-release apt-transport-https ca-certificates curl
-    curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-archive-keyring.gpg >/dev/null
-    echo "deb [signed-by=/usr/share/keyrings/cloudflare-archive-keyring.gpg] https://pkg.cloudflare.com/cloudflared $(lsb_release -cs) main" | sudo tee \
+    curl -fsSL [https://pkg.cloudflare.com/cloudflare-main.gpg](https://pkg.cloudflare.com/cloudflare-main.gpg) | sudo tee /usr/share/keyrings/cloudflare-archive-keyring.gpg >/dev/null
+    echo "deb [signed-by=/usr/share/keyrings/cloudflare-archive-keyring.gpg] [https://pkg.cloudflare.com/cloudflared](https://pkg.cloudflare.com/cloudflared) $(lsb_release -cs) main" | sudo tee \
     /etc/apt/sources.list.d/cloudflared.list
     sudo apt update
     sudo apt install cloudflared -y
@@ -283,7 +286,7 @@ This step links your `cloudflared` instance to your Cloudflare account.
 2.  **Record Tunnel ID:**
     Make a note of the Tunnel ID from the output of the `tunnel create` command. You'll need it for the `homelab.yml` configuration.
 
-### Configure Tunnel Routes (homelab.yml)
+### Configure Tunnel Routes (`homelab.yml`)
 
 This is where you define which internal services are exposed through the tunnel and at what public hostnames. I store my configuration in `/etc/cloudflared/homelab.yml`.
 
@@ -314,7 +317,7 @@ This is where you define which internal services are exposed through the tunnel 
       - hostname: n8n.yourdomain.com
         service: http://n8n-n8n-1:5678 # Using the specific container name and port
       - hostname: nocodb.yourdomain.com
-        service: http://2_pg-nocodb-1:8080 # Using the specific container name and port
+        service: [http://2](http://2)_pg-nocodb-1:8080 # Using the specific container name and port
       # If you wish to expose other Coolify related services:
       # - hostname: coolify.yourdomain.com
       #   service: http://coolify:8080
@@ -326,9 +329,34 @@ This is where you define which internal services are exposed through the tunnel 
       * **`tunnel`**: Your unique Tunnel ID.
       * **`credentials-file`**: Path to the JSON file generated during tunnel creation.
       * **`ingress`**: A list of rules defining how requests are routed.
-          * `hostname`: The public domain/subdomain you want to use. You need to create CNAME records for these in your Cloudflare DNS settings, pointing them to your Tunnel ID (e.g., `homepage CNAME <TUNNEL-ID>.cfargotunnel.com`).
+          * `hostname`: The public domain/subdomain you want to use.
           * `service`: The internal address and port of your Docker container or service. If you use Docker's default bridge network, you can often use the container's service name as the hostname (e.g., `http://homepage:3000`). Otherwise, use `http://<INTERNAL_IP>:<PORT>`.
           * `http_status:404`: A fallback rule to return a 404 for any unmatched hostnames, preventing unintended exposure.
+
+### Add DNS Records via CLI
+
+Instead of going to the Cloudflare dashboard, you can create the necessary CNAME DNS records for your tunnel directly from the command line.
+
+For each `hostname` defined in your `homelab.yml` (e.g., `homepage.yourdomain.com`, `erpnext.yourdomain.com`), execute the following command, replacing `<TUNNEL_NAME>` with your tunnel's name (e.g., `homelab-tunnel`) and `<HOSTNAME>` with the desired subdomain:
+
+```bash
+cloudflared tunnel route dns <TUNNEL_NAME> <HOSTNAME>
+```
+
+**Example:**
+If your tunnel name is `homelab-tunnel` and you want to expose `homepage.yourdomain.com`:
+
+```bash
+cloudflared tunnel route dns homelab-tunnel homepage.yourdomain.com
+cloudflared tunnel route dns homelab-tunnel nextcloud.yourdomain.com
+cloudflared tunnel route dns homelab-tunnel filebrowser.yourdomain.com
+cloudflared tunnel route dns homelab-tunnel portainer.yourdomain.com
+cloudflared tunnel route dns homelab-tunnel erpnext.yourdomain.com
+cloudflared tunnel route dns homelab-tunnel n8n.yourdomain.com
+cloudflared tunnel route dns homelab-tunnel nocodb.yourdomain.com
+```
+
+These commands will automatically create a CNAME record in your Cloudflare DNS, pointing `yourdomain.com` (e.g., `homepage`) to your tunnel's unique `*.cfargotunnel.com` address.
 
 ### Run the Tunnel as a Service
 
@@ -424,7 +452,7 @@ ingress:
   - hostname: n8n.yourdomain.com
     service: http://n8n-n8n-1:5678
   - hostname: nocodb.yourdomain.com
-    service: http://2_pg-nocodb-1:8080
+    service: [http://2](http://2)_pg-nocodb-1:8080
   # - hostname: coolify.yourdomain.com
   #   service: http://coolify:8080
   # - hostname: traefik-dashboard.yourdomain.com
@@ -477,18 +505,26 @@ My ERPNext installation involves custom apps, which are handled by `apps.json` a
 [
   {
     "name": "custom_app_one",
-    "url": "https://github.com/your-username/custom_app_one.git",
+    "url": "[https://github.com/your-username/custom_app_one.git](https://github.com/your-username/custom_app_one.git)",
     "branch": "main"
   },
   {
     "name": "custom_app_two",
-    "url": "https://github.com/your-username/custom_app_two.git",
+    "url": "[https://github.com/your-username/custom_app_two.git](https://github.com/your-username/custom_app_two.git)",
     "branch": "develop"
   }
 ]
 ```
 
 This file is crucial for telling the ERPNext Docker build process which custom applications to install and their respective Git repositories and branches.
+
+#### Installing Custom Apps for ERPNext
+
+To install custom applications for your ERPNext instance, you should follow the dedicated instructions provided within the `frappe_docker` repository. This guide will walk you through the process of adding new apps to your ERPNext Docker setup.
+
+Please refer to the following documentation:
+
+[**frappe\_docker/docs/custom-apps.md**](https://github.com/xEMPERORx/homelab/blob/master/frappe_docker/docs/custom-apps.md)
 
 ## 8\. Backup and Recovery Strategy (Future Enhancements)
 
@@ -537,7 +573,7 @@ Below is a table summarizing the active Docker containers in your homelab, their
 | `n8n-postgres-1`          | `postgres:16`                        | `5432`           | PostgreSQL database for n8n (internal)            |
 | `n8n-redis-1`             | `redis:6-alpine`                     | `6379`           | Redis cache for n8n (internal)                    |
 | `coolify-proxy`           | `traefik:v3.1`                       | `80`, `443`, `8080` | Traefik proxy for Coolify (might not be directly exposed via Cloudflare Tunnel if Coolify manages its own subdomains) |
-| `coolify`                 | `ghcr.io/coollabsio/coolify:4.0.0-beta.406` | `8080` (`8000/tcp` mapped to `8080`) | Coolify server for self-hosting apps             |
+| `coolify`                 | `ghcr.io/coollabsio/coolify:4.0.0-beta.406` | `8080` (`8000/tcp` mapped to `8080`) | Coolify server for self-hosting apps            |
 | `coolify-realtime`        | `ghcr.io/coollabsio/coolify-realtime:1.0.6` | `6001-6002`      | Coolify realtime service (internal)               |
 | `coolify-redis`           | `redis:7-alpine`                     | `6379`           | Redis cache for Coolify (internal)                |
 | `coolify-db`              | `postgres:15-alpine`                 | `5432`           | PostgreSQL database for Coolify (internal)        |
@@ -546,3 +582,6 @@ Below is a table summarizing the active Docker containers in your homelab, their
 -----
 
 This documentation should provide a solid foundation for your homelab setup and serve as a valuable reference. Happy homelabbing\! 🚀
+
+```
+```
