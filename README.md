@@ -1,6 +1,9 @@
 # 🏡 My Homelab Documentation
 
-Welcome to the documentation for my personal homelab setup\! This guide details the configuration of my Ubuntu Server, Dockerized applications, and secure remote access via Cloudflare Tunnel. This documentation serves as a reference for myself in case of OS corruption or data loss, and as a guide for others looking to build a similar homelab, especially those without a static IP address.
+Welcome to the documentation for my personal homelab setup\! This guide details the configuration of my Ubuntu Server, Dockerized applications, and secure remote access via Cloudflare Tunnel. This documentation serves as a reference for myself in case of OS corruption or data loss, and as a guide for others looking to build a similar homelab, especially those without a static IP address. 
+
+## Here is how my homelab dashboard looks like 
+![Dashboard image](./image.png)
 
 ## Table of Contents
 
