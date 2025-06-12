@@ -1,9 +1,3 @@
-This is a fantastic and comprehensive homelab documentation\! It's well-structured, clear, and provides all the essential steps for setting up a robust homelab, especially for those without a static IP.
-
-To address your request, I'll add a section highlighting crucial details that a first-timer might miss, emphasizing the importance of checking official documentation and specific file configurations.
-
------
-
 # 🏡 My Homelab Documentation
 
 Welcome to the documentation for my personal homelab setup\! This guide details the configuration of my Ubuntu Server, Dockerized applications, and secure remote access via Cloudflare Tunnel. This documentation serves as a reference for myself in case of OS corruption or data loss, and as a guide for others looking to build a similar homelab, especially those without a static IP address.
