@@ -587,11 +587,8 @@ Below is a table summarizing the active Docker containers in your homelab, their
 | `portainer`               | `portainer/portainer-ce:lts`         | `9000`           | Portainer web UI for Docker management            |
 | `homepage`                | `ghcr.io/gethomepage/homepage:latest`| `3000`           | Your personal homelab dashboard                   |
 | `frappe_docker-frontend-1`| `frappe-custom`                      | `8080`           | ERPNext / Frappe web frontend                     |
-| `frappe_docker-websocket-1`| `frappe-custom`                     | *(No direct port)* | ERPNext websocket service (internal)              |
-| `frappe_docker-scheduler-1`| `frappe-custom`                     | *(No direct port)* | ERPNext scheduler service (internal)              |
 | `2_pg-nocodb-1`           | `nocodb/nocodb:latest`               | `8080`           | NocoDB database interface                         |
 | `2_pg-root_db-1`          | `postgres:16.6`                      | `5432`           | PostgreSQL database for NocoDB (internal)         |
-| `n8n-n8n-worker-1`        | `docker.n8n.io/n8nio/n8n`            | *(No direct port)* | n8n worker (internal)                             |
 | `n8n-n8n-1`               | `docker.n8n.io/n8nio/n8n`            | `5678`           | n8n workflow automation platform                  |
 | `n8n-postgres-1`          | `postgres:16`                        | `5432`           | PostgreSQL database for n8n (internal)            |
 | `n8n-redis-1`             | `redis:6-alpine`                     | `6379`           | Redis cache for n8n (internal)                    |
