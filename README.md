@@ -33,7 +33,7 @@ Welcome to the documentation for my personal homelab setup\! This guide details 
     * [Portainer](#portainer)
     * [ERPNext Specifics](#erpnext-specifics)
         * [Installing Custom Apps for ERPNext](#installing-custom-apps-for-erpnext)
-8.  [Important Notes for First-Timers](#-8-important-notes-for-first-timers)
+8.  [Important Notes for First-Timers](#8-important-notes-for-first-timers)
 9.  [Backup and Recovery Strategy (Future Enhancements)](#9-backup-and-recovery-strategy-future-enhancements)
 10.  [Troubleshooting](#10-troubleshooting)
 11. [Docker Container List and Ports](#11-docker-container-list-and-ports)
